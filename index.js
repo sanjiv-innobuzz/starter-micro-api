@@ -1,6 +1,14 @@
-var http = require('http');
-http.createServer(function (req, res) {
-    console.log(`Just got a request at ${req.url}!`)
-    res.write('Yo boy!');
-    res.end();
-}).listen(process.env.PORT || 3000);
+const express = require("express");
+const app = express();
+const port = 3000;
+const IP = require("ip");
+
+app.get("/", (req, res) => {
+  const ipAddress = IP.address();
+  console.log("ip:", ipAddress);
+  res.send(ipAddress);
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
